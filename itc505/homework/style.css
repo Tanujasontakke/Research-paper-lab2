@@ -1,6 +1,6 @@
 @font-face {
     font-family: "MemphisRiver";
-    src: url(fonts/MemphisRiver.ttf) format("truetype");
+    src: url(fonts/EgorycastlePersonal.ttf) format("truetype");
   }
   @font-face {
     font-family: "Roblox";
@@ -19,17 +19,13 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #1a2980; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
+    /*background: #1a2980; */ /* fallback for old browsers */
+    background: linear-gradient(to bottom right, grey, black); /* Chrome 10-25, Safari 5.1-6 */
+    /* background: linear-gradient(
       to right,
       #26d0ce,
       #1a2980
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      #26d0ce,
-      #1a2980
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    ); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
   h1 {
     font-size: 6em;
@@ -41,8 +37,7 @@
     font-family: "MemphisRiver", sans-serif;
     font-size: 7em;
   }
-  h1,
-  h2 {
+  h1,h2 {
     margin: 0;
     color: #fff;
   }
@@ -51,5 +46,5 @@
     font-size: 1.2em;
     max-width: 50%;
     text-align: center;
-    color: #fff;
+    color: #f49314;
   }
