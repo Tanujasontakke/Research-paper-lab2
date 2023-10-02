@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "EgorycastlePersonal";
-  src: url(../EgorycastlePersonal.ttf) format("truetype");
+  font-family: "TheMonster";
+  src: url(../TheMonster.otf) format("truetype");
 }
 /* @font-face {
   font-family: "Roblox";
@@ -38,7 +38,7 @@ h1 {
 }
 
 h2 {
-  font-family: "EgorycastlePersonal", sans-serif;
+  font-family: "TheMonster", sans-serif;
   font-size: 7em;
 }
 h1,
