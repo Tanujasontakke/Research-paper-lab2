@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "Egorycastle";
+    font-family: "BLOODY";
     src: url(fonts/BLOODY.TTF) format("opentype");
   }
   @font-face {
@@ -34,7 +34,7 @@
   }
   
   h2 {
-    font-family: "MemphisRiver", sans-serif;
+    font-family: "BLOODY", sans-serif;
     font-size: 7em;
   }
   h1,h2 {
