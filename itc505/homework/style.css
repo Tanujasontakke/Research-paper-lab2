@@ -68,10 +68,9 @@ h2 {
    font-weight: 100;
 
 }
-
 @font-face {
-  font-family: 'pentagrams';
-  src: url(fonts/PentaGrams\ Malefissent.ttf);
+  font-family: 'october';
+  src: url(fonts/October\ Twilight.ttf);
   font-weight: bold;
 } 
 
@@ -80,7 +79,7 @@ h2 {
   font-size: 7em;
 }
 p {
-  font-family: pentagrams;
+  font-family: october;
   font-size: 1.2em;
   max-width: 50%;
   text-align: center;
