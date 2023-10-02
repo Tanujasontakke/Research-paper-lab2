@@ -13,23 +13,35 @@
   font-weight: bold;
 } */
 
-body {
+/* body {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background: #515254; /* fallback for old browsers */
+  background: #515254; /* fallback for old browsers 
   background: -webkit-linear-gradient(
     to right,
     #a6a9a9,
     #070707
-  ); /* Chrome 10-25, Safari 5.1-6 */
+  ); /* Chrome 10-25, Safari 5.1-6 
   background: linear-gradient(
     to right,
     #a5a8a8,
     #101010
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
+} */
+
+html,body{
+  padding-top: 4em;
+  text-align:center;
+  width: 80%;
+  margin:0 auto;
+  background: linear-gradient(
+    to right,
+    #a5a8a8,
+    #101010
+  );
 }
 h1 {
   font-size: 6em;
