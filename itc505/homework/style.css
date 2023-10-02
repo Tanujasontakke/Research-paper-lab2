@@ -33,17 +33,15 @@
 } */
 
 body{
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  background-image: url('images/70793247.jpg');
-  /* background: linear-gradient(
+  background: linear-gradient(
     to right,
     #a5a8a8,
     #101010
-  ); */
+  );
 }
 
 /* h1 {
@@ -79,16 +77,17 @@ h2 {
 @font-face {
   font-family: 'october';
   src: url(fonts/October\ Twilight.ttf);
-  font-weight: bold;
+  font-weight: normal;
 } 
 h1 {
-  font-size: 6em;
+  font-size: 4.7em;
   font-family: egory;
-  font-weight: bold;
+  color: #9d58f0;
 }
 h2 {
   font-family: bloody;
-  font-size: 4em;
+  font-size: 3.6em;
+  color: #fae71d;
 }
 p {
   font-family: october;
