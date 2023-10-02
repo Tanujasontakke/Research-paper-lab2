@@ -38,11 +38,11 @@ html,body{
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* background: linear-gradient(
+  background: linear-gradient(
     to right,
     #a5a8a8,
     #101010
-  ); */
+  );
 }
 
 /* h1 {
