@@ -1,64 +1,15 @@
-/* @font-face {
-  font-family: "EgorycastlePersonal";
-  src: url(../EgorycastlePersonal.ttf) format("truetype");
-} */
-/* @font-face {
-  font-family: "Roblox";
-  src: url(fonts/Roblox-Font-Regular.ttf) format("truetype");
-  font-weight: normal;
-}
-@font-face {
-  font-family: "Roblox";
-  src: url(fonts/Roblox-Font-Bold.ttf) format("truetype");
-  font-weight: bold;
-} */
-
-/* body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: #515254; /* fallback for old browsers 
-  background: -webkit-linear-gradient(
-    to right,
-    #a6a9a9,
-    #070707
-  ); /* Chrome 10-25, Safari 5.1-6 
-  background: linear-gradient(
-    to right,
-    #a5a8a8,
-    #101010
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
-} */
 
 body{
   display: flex;
-  align-items: center;
+  /* align-items: center;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: column; */
   background: linear-gradient(
     to right,
     #5c5d5d,
     #101010
   );
 }
-
-/* h1 {
-  font-size: 6em;
-  font-family: "Roblox", sans-serif;
-  font-weight: bold;
-}
-
-h2 {
-  font-family: "EgorycastlePersonal", sans-serif;
-  font-size: 7em;
-}
-h1,
-h2 {
-  margin: 0;
-  color: #fff;
-} */
 
 @font-face{
    font-family: 'bloody';
