@@ -32,7 +32,7 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
 } */
 
-html,body{
+body{
   height: 100vh;
   display: flex;
   align-items: center;
@@ -93,7 +93,7 @@ h2 {
 p {
   font-family: october;
   font-size: 1.2em;
-  max-width: 50%;
+  max-width: 70%;
   text-align: center;
   color: #f49506;
 }
