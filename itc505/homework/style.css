@@ -68,14 +68,21 @@ h2 {
    font-weight: 100;
 
 }
+
+@font-face {
+  font-family: 'pentagrams';
+  src: url(fonts/PentaGrams\ Malefissent.ttf);
+  font-weight: bold;
+} 
+
 h2 {
   font-family: bloody;
   font-size: 7em;
 }
 p {
-  font-family: Arial, sans-serif;
+  font-family: pentagrams;
   font-size: 1.2em;
   max-width: 50%;
   text-align: center;
-  color: #fff;
+  color: #f49506;
 }
