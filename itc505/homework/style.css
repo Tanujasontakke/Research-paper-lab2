@@ -39,11 +39,11 @@ html,body{
   justify-content: center;
   flex-direction: column;
   background-image: url('images/70793247.jpg');
-  background: linear-gradient(
+  /* background: linear-gradient(
     to right,
     #a5a8a8,
     #101010
-  );
+  ); */
 }
 
 /* h1 {
