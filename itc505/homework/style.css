@@ -1,8 +1,8 @@
 @font-face {
   font-family: "EgorycastlePersonal";
-  src: url(itc505\homework\fonts\EgorycastlePersonal.ttf) format("truetype");
+  src: url(../EgorycastlePersonal.ttf) format("truetype");
 }
-@font-face {
+/* @font-face {
   font-family: "Roblox";
   src: url(fonts/Roblox-Font-Regular.ttf) format("truetype");
   font-weight: normal;
@@ -11,7 +11,7 @@
   font-family: "Roblox";
   src: url(fonts/Roblox-Font-Bold.ttf) format("truetype");
   font-weight: bold;
-}
+} */
 
 body {
   height: 100vh;
@@ -47,7 +47,7 @@ h2 {
   color: #fff;
 }
 p {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 1.2em;
   max-width: 50%;
   text-align: center;
