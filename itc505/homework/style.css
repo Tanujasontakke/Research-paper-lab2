@@ -1,7 +1,7 @@
-@font-face {
-  font-family: "TheMonster";
-  src: url(../TheMonster.otf) format("truetype");
-}
+/* @font-face {
+  font-family: "EgorycastlePersonal";
+  src: url(../EgorycastlePersonal.ttf) format("truetype");
+} */
 /* @font-face {
   font-family: "Roblox";
   src: url(fonts/Roblox-Font-Regular.ttf) format("truetype");
@@ -43,20 +43,33 @@ html,body{
     #101010
   );
 }
-h1 {
+
+/* h1 {
   font-size: 6em;
   font-family: "Roblox", sans-serif;
   font-weight: bold;
 }
 
 h2 {
-  font-family: "TheMonster", sans-serif;
+  font-family: "EgorycastlePersonal", sans-serif;
   font-size: 7em;
 }
 h1,
 h2 {
   margin: 0;
   color: #fff;
+} */
+
+@font-face{
+   font-family: 'bloody';
+   src: url(fonts/BLOODY.TTF);
+   font-style: normal;
+   font-weight: 100;
+
+}
+h2 {
+  font-family: bloody;
+  font-size: 7em;
 }
 p {
   font-family: Arial, sans-serif;
