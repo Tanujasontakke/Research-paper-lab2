@@ -33,10 +33,11 @@
 } */
 
 html,body{
-  padding-top: 4em;
-  text-align:center;
-  width: 80%;
-  margin:0 auto;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   background: linear-gradient(
     to right,
     #a5a8a8,
