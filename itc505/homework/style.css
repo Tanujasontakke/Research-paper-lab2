@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Egorycastle";
-    src: url(fonts/EgorycastlePersonal.ttf) format("opentype");
+    font-family: "BLOODY";
+    src: url(fonts/BLOODY.TTF) format("truetype");
   }
   @font-face {
     font-family: "Roblox";
@@ -34,7 +34,7 @@
   }
   
   h2 {
-    font-family: "MemphisRiver", sans-serif;
+    font-family: "BLOODY", sans-serif;
     font-size: 7em;
   }
   h1,h2 {
