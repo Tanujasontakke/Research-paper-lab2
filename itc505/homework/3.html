@@ -3,76 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <!--<meta http-equiv="X-UA-Compatible" content="IE=edge" /> -->
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Custom Fonts using @font-face</title>
   </head>
   <body>
-    <h1>How to add custom fonts to your website using @font-face</h1>
+    <h1>Halloween</h1>
     <h2>Welcome to the Month</h2>
     <!-- <img src="images/vector-bat.jpg" alt="bat" style="float:right;width:100px;height:100px;"> -->
     <p>
-        How to add custom fonts to your website using @font-face 
-        The @font-face CSS rule explained below is the most common approach for adding custom fonts to a website.
-        <br>
-        Step 1: Download the font
-        Find the custom font you want to use on your website, and then download the TrueType Font file format (.ttf). You can also download the OpenType Font format (.otf)
-        <br>
-        Step 2: Create a WebFont Kit for cross-browsing
-        Upload your .ttf or .otf file to the Webfont Generator and then download your Web Font Kit.
-        <br>
-        Step 3: Upload the font files to your website
-        Using your FTP or file manager, upload all the font files found within your Web Font Kit to your website.* Typically this kit will include multiple file extensions such as (.eot), (.woff), (.woff2), (.ttf) and (.svg).
-        
-        Your kit will also include a Cascading Style Sheet (.css) that you will need to update and upload in step 4.
-        
-        *This step will vary greatly based upon how your website is built and hosted.
-        <br>
-        Step 4: Update and upload your CSS file
-        Open the CSS file in a text editor such as Textedit, NotePad or Sublime.
-        
-        Replace the existing source URL with the new URL you created by uploading each file.
-        
-        By default, the source URL location is set within the downloaded Web Font Kit. It needs to be replaced by the location on your server.
-        <hr>
-        Here’s a quick example:
-        <br>
-        Before update:
-        
-        @font-face {
-        font-family: "CustomFont";
-        src: url("CustomFont.eot");
-        src: url("CustomFont.woff") format("woff"),
-        url("CustomFont.otf") format("opentype"),
-        url("CustomFont.svg#filename") format("svg");
-        }
-        <br>
-        After update:
-        
-        @font-face {
-        font-family: "CustomFont";
-        src: url("https://yoursite.com/css/fonts/CustomFont.eot");
-        src: url("https://yoursite.com/css/fonts/CustomFont.woff") format("woff"),
-        url("https://yoursite.com/css/fonts/CustomFont.otf") format("opentype"),
-        url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
-        }
-        
-        Once you’ve updated the CSS file, you need to upload it to your website (server).
-        <hr>
-        Step 5: Use the custom font in your CSS declarations
-        Now that your Cascading Style Sheet and font files are uploaded to your server, you can start using your custom font in your CSS declarations to help improve the look of the HTML.
-        
-        This can be done in multiple ways, including adding site-wide declarations to your main CSS file.
-        <br>
-        Here is a quick example:
-        
-        h1 {
-        font-family: 'CustomFont', Arial, sans-serif;
-        font-weight:normal;
-        font-style:normal;
-        }    
-       <hr>
-        Reference site: <i> https://www.pagecloud.com/blog/how-to-add-custom-fonts-to-any-website </i>
+      Halloween originated from Ireland. The pagan holiday Samhain, which the All Saints holy day replaced, was also known as the Day of the Dead. Many wiccans and modern pagans celebrate the Day of the Dead. It is the day that some believed the souls of dead people come back to Earth. This is a happy holiday (even though it celebrates death) because some of the souls will visit the homes of their family. Pope Gregory III originally designated Halloween on November 1 as a time to honor all saints. Soon, All Saints Day incorporated some of the traditions of Samhain.
+Many Lutheran churches celebrate a holiday on November 2 called the Reformation. This holiday celebrates the day that Martin Luther put The Ninety-Five Theses on a church door.
+After mass Irish and Scottish immigration in the 19th century, Halloween became a major holiday in America.
+The mystical rituals of earlier times evolved into fun and games. For example, the concept of connecting to the dead was replaced with the more lighthearted idea of telling the future. Bobbing for apples became popular as a fortune-telling game on All Hallows' Eve: Apples would be selected to represent a woman's suitors, and the apple she ended up biting into would supposedly represent her future husband. Halloween posed a huge matchmaking opportunity for young women in the 19th century.
     </p>
   </body>
 </html>
+
+
+
