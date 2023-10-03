@@ -1,9 +1,9 @@
 
 body{
-  /* display: flex; */
-  /* align-items: center;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  flex-direction: column; */
+  flex-direction: column;
   background: linear-gradient(
     to right,
     #5c5d5d,
