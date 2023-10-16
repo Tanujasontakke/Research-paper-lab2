@@ -47,7 +47,9 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%; /* Set the width to 100% */
-    left: 0; 
+    left: 0; /* Align the left edge to the left side of the viewport */
+    margin: 0; /* Reset margin to ensure no extra spacing */
+    padding: 0;
 }
 
 h2, h3 {
