@@ -43,12 +43,12 @@ footer {
     color: white;
     text-align: center;
     height: 70px; /* Adjust the height of the footer according to your preference */
-    line-height: 30px; /* Center the content vertically within the footer */
+    line-height: 50px; /* Center the content vertically within the footer */
     position: fixed;
     bottom: 0;
-    width: 100%; /* Set the width to 100% */
+    /*width: 100%;  Set the width to 100% */
     left: 0; /* Align the left edge to the left side of the viewport */
-    margin: 0; /* Reset margin to ensure no extra spacing */
+    margin: 20px; /* Reset margin to ensure no extra spacing */
     padding: 0;
 }
 
