@@ -42,13 +42,11 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    height: 70px; /* Adjust the height of the footer according to your preference */
+    height: 50px; /* Set the height of the footer to 50 pixels */
     line-height: 50px; /* Center the content vertically within the footer */
-    position: fixed;
-    bottom: 0;
-    /*width: 100%;  Set the width to 100% */
-    left: 0; /* Align the left edge to the left side of the viewport */
-    right: 0;
+    position: fixed; /* Fixed position at the bottom of the viewport */
+    bottom: 0; /* Stick the footer to the bottom of the viewport */
+    width: 100%; 
 }
 
 h2, h3 {
