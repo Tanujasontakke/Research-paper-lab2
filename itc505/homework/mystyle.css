@@ -8,7 +8,7 @@ body {
 
 header {
     background-color: #4CAF50;
-    /* color: white; */
+    color: white;
     text-align: center;
     padding: 20px 0;
 }
@@ -49,7 +49,7 @@ footer {
     height: 100px;
 }
 
-h1, h2, h3 {
+h2, h3 {
     color: #4CAF50;
 }
 
