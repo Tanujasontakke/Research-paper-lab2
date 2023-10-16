@@ -16,6 +16,7 @@ header {
 h1 {
     font-size: 36px;
     margin: 0;
+    color: #f4f4f4;
 }
 
 nav {
@@ -50,7 +51,7 @@ footer {
 }
 
 h2, h3 {
-    color: #4CAF50;
+    color: #008C45;
 }
 
 ul {
