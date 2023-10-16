@@ -42,7 +42,7 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    height: 100px; /* Adjust the height of the footer according to your preference */
+    height: 70px; /* Adjust the height of the footer according to your preference */
     line-height: 50px; /* Center the content vertically within the footer */
     position: fixed;
     bottom: 0;
