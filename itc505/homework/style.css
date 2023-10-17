@@ -1,49 +1,71 @@
-
-body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  background: linear-gradient(
-    to right,
-    #5c5d5d,
-    #101010
-  );
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
 }
 
-@font-face{
-   font-family: 'bloody';
-   src: url(fonts/BLOODY.TTF);
-   font-style: normal;
-   font-weight: 100;
-
+header {
+    background-color: #4CAF50;
+    text-align: center;
+    padding: 20px 0;
 }
-@font-face{
-  font-family: 'egory';
-  src: url(fonts/EgorycastlePersonal.ttf);
-  font-style: normal;
-  font-weight: 100;
 
-}
-@font-face {
-  font-family: 'october';
-  src: url(fonts/October\ Twilight.ttf);
-  font-weight: normal;
-} 
 h1 {
-  font-size: 4.7em;
-  font-family: egory;
-  color: #9d58f0;
+    font-size: 36px;
+    margin: 0;
+    color: #fefffb;
 }
-h2 {
-  font-family: bloody;
-  font-size: 3.6em;
-  color: #fae71d;
+
+nav {
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
 }
-p {
-  font-family: october;
-  font-size: 1.2em;
-  max-width: 70%;
-  text-align: center;
-  color: #f49506;
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+article {
+    padding: 20px;
+    margin: 20px 0;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    height: 50px;
+    line-height: 14px;
+    position: fixed;
+    bottom: 2px;
+    width: 96.8%;
+
+}
+
+h2, h3 {
+    color: #008C45;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #4CAF50;
+}
+
+a:hover {
+    text-decoration: underline;
 }
