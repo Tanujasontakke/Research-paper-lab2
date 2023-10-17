@@ -42,12 +42,12 @@ footer {
     background-color: #333;
     color: white;
     text-align: center;
-    height: 80px; /* Set the height of the footer to 50 pixels */
+    height: 50px; /* Set the height of the footer to 50 pixels */
     line-height: 10px; /* Center the content vertically within the footer */
     position: fixed; /* Fixed position at the bottom of the viewport */
     bottom: 10px; /* Stick the footer to the bottom of the viewport */
     width: 80%; 
-    padding-right: 20px;
+    padding-right: 10px;
 }
 
 h2, h3 {
