@@ -14,7 +14,7 @@ header {
 }
 
 header img {
-    max-width: auto;
+    max-width: 100%;
     height: auto;
     margin-bottom: 10px;
 }
