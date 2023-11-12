@@ -14,11 +14,10 @@ header {
 }
 
 header img {
-    max-width: auto;
+    max-width: 100%;
     height: auto;
     margin-bottom: 10px;
 }
-
 
 header, footer {
     background-color: #333;
@@ -29,13 +28,28 @@ header, footer {
     background-color: #ddd;
 }
 
+.menu nav {
+    display: flex;
+    justify-content: center;
+}
+
 .menu ul {
     list-style: none;
     padding: 0;
 }
 
 .menu li {
-    margin: 10px 0;
+    margin: 0 15px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.menu a:hover {
+    color: #555;
 }
 
 .advertisement {
