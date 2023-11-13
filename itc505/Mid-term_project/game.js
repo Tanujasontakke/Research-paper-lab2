@@ -170,7 +170,7 @@ function getStoryPart(partNumber) {
                 text: "The Moonlit Meadow: The path to the left takes you through a moonlit meadow. Will you follow the fireflies deeper into the enchanting night, or will you continue on the main trail?",
                 choices: [
                     { text: "Embrace the tranquility", nextPart: 'end1', image: "./end1.jpg" },
-                    { text: "Explore New", image: "./end8.jpg" }
+                    { text: "Explore New", nextPart: 'end8', image: "./end8.jpg" }
                 ]
             };
 
@@ -229,6 +229,21 @@ function getStoryPart(partNumber) {
                 text: "You have reached the Sunlit Summit...",
                 choices: []
             };
+        case 'end6':
+            return {
+                text: "You have reached the Sunlit Summit...",
+                choices: []
+            };
+        case 'end7':
+            return {
+                    text: "You have reached the Sunlit Summit...",
+                    choices: []
+                };
+        case 'end8':
+            return {
+                        text: "You have reached the Sunlit Summit...",
+                        choices: []
+                    };
 
         default:
             // Handle cases not explicitly defined
