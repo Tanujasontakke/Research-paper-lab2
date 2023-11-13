@@ -1,17 +1,18 @@
 const storyTextElement = document.getElementById('story-text');
 const storyImageElement = document.getElementById('story-image');
 const choicesElement = document.getElementById('choices');
-const backButton = document.getElementById('back-button');
+// const backButton = document.getElementById('back-button');
+const restartButton = document.getElementById('restart-button');
 
 // Initial game state
 let currentStoryPart = 1;
-let previousChoices = [];
+// let previousChoices = [];
 
 
 // Function to start/restart the game
 function startGame() {
     currentStoryPart = 1;
-    previousChoices = [];
+    // previousChoices = [];
     updatePage();
 }
 
@@ -37,14 +38,15 @@ function updatePage() {
     });
 
     // Show the back button if there are previous choices
-    backButton.style.display = previousChoices.length > 0 ? 'block' : 'none';
+    // backButton.style.display = previousChoices.length > 0 ? 'block' : 'none';
+    restartButton.style.display = currentStoryPart.startsWith('end') ? 'block' : 'none';
 }
 
 // Function to handle player choices
 function makeChoice(choiceIndex) {
 
     // Save the current choice for possible backtracking
-    previousChoices.push(currentStoryPart);
+    // previousChoices.push(currentStoryPart);
 
     const storyPart = getStoryPart(currentStoryPart);
     const chosenOption = storyPart.choices[choiceIndex];
@@ -61,13 +63,13 @@ function makeChoice(choiceIndex) {
 }
 
 // Function to handle going back to the previous set of choices
-function goBack() {
-    if (previousChoices.length > 0) {
-        // Pop the previous choice and go back
-        currentStoryPart = previousChoices.pop();
-        updatePage();
-    }
-}
+// function goBack() {
+//     if (previousChoices.length > 0) {
+//         // Pop the previous choice and go back
+//         currentStoryPart = previousChoices.pop();
+//         updatePage();
+//     }
+// }
 
 // Function to handle game ending
 function endGame(image) {
@@ -81,13 +83,14 @@ function endGame(image) {
     storyImageElement.src = image;
 
     // Show the restart button
-    const restartButton = document.createElement('button');
-    restartButton.textContent = 'Restart';
-    restartButton.addEventListener('click', startGame);
-    choicesElement.appendChild(restartButton);
+    // const restartButton = document.createElement('button');
+    // restartButton.textContent = 'Restart';
+    // restartButton.addEventListener('click', startGame);
+    // choicesElement.appendChild(restartButton);
 
     // Hide the back button at the end
-    backButton.style.display = 'none';
+    // backButton.style.display = 'none';
+    restartButton.style.display = 'block';
 
     // // Display relevant image for the ending
     // const imgElement = document.createElement('img');
@@ -147,6 +150,31 @@ function getStoryPart(partNumber) {
             };
 
         // Add more cases for other story parts as needed
+        case 'end1':
+            return {
+                text: "You have found the Serene Sanctuary...",
+                choices: []
+            };
+        case 'end2':
+            return {
+                text: "You have encountered the Whispering Guardians...",
+                choices: []
+            };
+        case 'end3':
+            return {
+                text: "You have reached the Crystal Nexus...",
+                choices: []
+            };
+        case 'end4':
+            return {
+                text: "You have entered the Bridge of Shadows...",
+                choices: []
+            };
+        case 'end5':
+            return {
+                text: "You have reached the Sunlit Summit...",
+                choices: []
+            };
 
         default:
             // Handle cases not explicitly defined
