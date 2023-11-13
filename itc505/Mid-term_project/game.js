@@ -1,12 +1,17 @@
 const storyTextElement = document.getElementById('story-text');
+const storyImageElement = document.getElementById('story-image');
 const choicesElement = document.getElementById('choices');
+const backButton = document.getElementById('back-button');
 
 // Initial game state
 let currentStoryPart = 1;
+let previousChoices = [];
+
 
 // Function to start/restart the game
 function startGame() {
     currentStoryPart = 1;
+    previousChoices = [];
     updatePage();
 }
 
@@ -16,6 +21,9 @@ function updatePage() {
 
     // Update story text
     storyTextElement.textContent = storyPart.text;
+
+    // Update story image
+    storyImageElement.src = storyPart.image;
 
     // Clear previous choices
     choicesElement.innerHTML = '';
@@ -27,10 +35,17 @@ function updatePage() {
         button.addEventListener('click', () => makeChoice(index));
         choicesElement.appendChild(button);
     });
+
+    // Show the back button if there are previous choices
+    backButton.style.display = previousChoices.length > 0 ? 'block' : 'none';
 }
 
 // Function to handle player choices
 function makeChoice(choiceIndex) {
+
+    // Save the current choice for possible backtracking
+    previousChoices.push(currentStoryPart);
+
     const storyPart = getStoryPart(currentStoryPart);
     const chosenOption = storyPart.choices[choiceIndex];
     
@@ -45,6 +60,15 @@ function makeChoice(choiceIndex) {
     }
 }
 
+// Function to handle going back to the previous set of choices
+function goBack() {
+    if (previousChoices.length > 0) {
+        // Pop the previous choice and go back
+        currentStoryPart = previousChoices.pop();
+        updatePage();
+    }
+}
+
 // Function to handle game ending
 function endGame(image) {
     // Display ending text
@@ -54,10 +78,16 @@ function endGame(image) {
     choicesElement.innerHTML = '';
 
     // Display relevant image for the ending
-    const imgElement = document.createElement('img');
-    imgElement.src = image;
-    imgElement.alt = 'Ending Image';
-    choicesElement.appendChild(imgElement);
+    storyImageElement.src = image;
+
+    // Hide the back button at the end
+    backButton.style.display = 'none';
+
+    // // Display relevant image for the ending
+    // const imgElement = document.createElement('img');
+    // imgElement.src = image;
+    // imgElement.alt = 'Ending Image';
+    // choicesElement.appendChild(imgElement);
 }
 
 // Function to retrieve story part based on the current part number
