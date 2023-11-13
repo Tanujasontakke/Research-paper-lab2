@@ -92,8 +92,11 @@ function makeChoice(choiceIndex) {
 function showImage() {
     const storyPart = getStoryPart(currentStoryPart);
 
-    // Display the image
-    storyImageElement.src = storyPart.image;
+    // Check if the story part has an image property
+    if (storyPart.image) {
+        // Display the image
+        storyImageElement.src = storyPart.image;
+    }
 
     // Reset the choice scenario flag after showing the image
     inChoice = false;
@@ -167,7 +170,7 @@ function getStoryPart(partNumber) {
                 text: "The Moonlit Meadow: The path to the left takes you through a moonlit meadow. Will you follow the fireflies deeper into the enchanting night, or will you continue on the main trail?",
                 choices: [
                     { text: "Embrace the tranquility", nextPart: 'end1', image: "./end1.jpg" },
-                    { text: "Explore further", nextPart: 3, image: "whispering-guardians.jpg" }
+                    { text: "Explore New", image: "./end8.jpg" }
                 ]
             };
 
@@ -202,7 +205,9 @@ function getStoryPart(partNumber) {
         case 'end1':
             return {
                 text: "You have found the Serene Sanctuary...",
-                choices: []
+                choices: [
+                    { text: "Restart", nextPart: 1, image: "restart.jpg" }
+                ]
             };
         case 'end2':
             return {
