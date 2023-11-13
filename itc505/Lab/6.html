@@ -4,36 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>My Holy Grail Layout</title>
+    <title>Holy Grail Layout</title>
 </head>
 <body>
     <header>
-        <img src="header2.jpg" alt="Header Image">
+        <div class="header-content">
+        <img src="header.jpg" alt="Header Image">
         <h1>My Website</h1>
-        <!-- You can add an image or other content here -->
+        <!-- You can add an image or any other content here -->
+    </div>
     </header>
-    <aside class="menu">
-        <nav>
+
+    <div class="container">
+        <nav class="menu-sidebar">
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
-    </aside>
-    <main>
-        <div id="problem-container">
-            <!-- Your JavaScript content will go here -->
+
+        <main class="main-content">
+            <h3>Tic Tac Toe</h3>
+            <div id="container">
+                <div id="tic-tac-toe">
+                </div>
+            
+            <div id="winner-display">
+                Winner: <span id="winner">-</span>
+            </div>
         </div>
-    </main>
-    <aside class="advertisement">
-        <a href="https://www.amazon.com" target="_blank">
-            <img src="advertisement.jpg" alt="Product Advertisement">
-        </a>
-    </aside>
+
+
+            <a href="https://www.amazon.com" target="_blank">
+                <img id="amazon-image" src="amazon.png" alt="Amazon Product">
+            </a>
+
+        </main>
+    </div>
+
     <footer>
-        <!-- Your addendum goes here -->
+        Addendum
+        <p>Tic-Tac-Toe game is developed with JavaScript code. The primary problem addressed is the creation of a dynamic and responsive game board, allowing players to take turns and determining the winner based on common Tic Tac Toe rules.
+          I have used event listeners to detect user clicks on individual cells within the game grid. 
+          Upon each click, the JavaScript code responds by updating the game state and then checking for a winner or a draw, and dynamically switching between "X" and "O" players. 
+          The game status is displayed, indicating the current player or announcing the winner.
+          <br>
+          Challenges I faced:
+            Game Board Initialization: One challenge was initializing the game board dynamically, for which I created the grid using loop and assigning appropriate event listeners to each cell.
+            Winner Determination: For selecting the appropriate winner I tried iterating through predefined win patterns and comparing the values in the corresponding cells.
+            Resetting the Game: this was challenging due to the need to reassign event listeners. So I separated the game initialization logic into a dedicated function and called it when needed.
+            Displaying Winner: Initially, the winner was not displayed correctly after a win. I resolved this updating the status display with the winning player's information.</p>
     </footer>
-    <script src="script.js"></script>
+
+    <script src="./script.js"></script>
 </body>
 </html>
