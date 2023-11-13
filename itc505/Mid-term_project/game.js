@@ -54,7 +54,7 @@ function updatePage() {
 
     // Show the back button if there are previous choices
     // backButton.style.display = previousChoices.length > 0 ? 'block' : 'none';
-    restartButton.style.display = currentStoryPart.startsWith('end') ? 'block' : 'none';
+    restartButton.style.display = typeof currentStoryPart === 'string' && currentStoryPart.startsWith('end') ? 'block' : 'none';
 }
 
 // Function to handle player choices
@@ -178,8 +178,8 @@ function getStoryPart(partNumber) {
             return {
                 text: "The Whispering Woods: The right path leads into a dense forest where the trees seem to whisper ancient secrets. Do you trust the whispers and venture into the heart of the woods, or do you stay on the path?",
                 choices:[
-                    { text: "Learn from the guardians", nextPart: 'end2', image: "whispering-guardians.jpg" },
-                    { text: "Continue your journey", nextPart: 'end3', image: "crystal-nexus.jpg" }
+                    { text: "Learn from the guardians", nextPart: 'end2', image: "end2.jpg" },
+                    { text: "Continue your journey", nextPart: 'end7', image: "end7.jpg" }
                 ]
             };
 
@@ -187,8 +187,8 @@ function getStoryPart(partNumber) {
             return {
                 text: "The Crystal Caverns: A hidden entrance leads downward into the depths of the maze. The air is cool, and crystals glisten on the walls. Will you explore the caverns, or continue forward?",
                 choices:[
-                    { text: "Harness the artifact's power", nextPart: 'end3', image: "crystal-nexus.jpg" },
-                    { text: "Continue your exploration", nextPart: 'end4', image: "bridge-of-shadows.jpg" }
+                    { text: "Harness the artifact's power", nextPart: 'end3', image: "end3.jpg" },
+                    { text: "Continue your exploration", nextPart: 'end6', image: "end6.jpg" }
                 ]
             };
 
@@ -196,8 +196,8 @@ function getStoryPart(partNumber) {
             return {
                 text: "The Bridge of Reflection: A rickety bridge extends over a chasm, reflecting your choices so far. Do you cross the bridge or search for an alternative route?",
                 choices: [
-                    { text: "Embrace the shadows", nextPart: 'end4', image: "bridge-of-shadows.jpg" },
-                    { text: "Find your way back to the maze", nextPart: 'end5', image: "sunlit-summit.jpg" }
+                    { text: "Embrace the shadows", nextPart: 'end4', image: "end4.jpg" },
+                    { text: "Find your way back to the maze", nextPart: 'end5', image: "end5.jpg" }
                 ]
             };
 
