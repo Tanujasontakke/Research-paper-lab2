@@ -67,7 +67,7 @@ function getStoryPart(partNumber) {
             return {
                 text: "Once upon a time, in a mystical land, there existed a maze known for its magical secrets and hidden treasures. Legend had it that those who navigated its twists and turns would encounter eight different endings, each holding a unique reward. As our story begins, you find yourself standing at the entrance of the maze. The tall hedges loom around you, and a mysterious glow emanates from within. You have four paths to choose from:",
                 choices: [
-                    { text: "Follow the Moonlit Meadow", nextPart: 2, image: "moonlit-meadow.jpg" },
+                    { text: "Follow the Moonlit Meadow", nextPart: 2 },
                     { text: "Enter the Whispering Woods", nextPart: 3, image: "whispering-woods.jpg" },
                     { text: "Explore the Crystal Caverns", nextPart: 4, image: "crystal-caverns.jpg" },
                     { text: "Cross the Bridge of Reflection", nextPart: 5, image: "bridge-of-reflection.jpg" }
@@ -78,7 +78,7 @@ function getStoryPart(partNumber) {
             return {
                 text: "The Moonlit Meadow: The path to the left takes you through a moonlit meadow. Will you follow the fireflies deeper into the enchanting night, or will you continue on the main trail?",
                 choices: [
-                    { text: "Follow the fireflies", nextPart: 6 },
+                    { text: "Follow the fireflies", nextPart: 6, image: "end1.jpg"},
                     { text: "Continue on the main trail", nextPart: 7 }
                 ]
             };
