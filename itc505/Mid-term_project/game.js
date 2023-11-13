@@ -63,6 +63,11 @@ function makeChoice(choiceIndex) {
     // Check if it's a choice scenario
     inChoice = currentStoryPart.startsWith('choice');
 
+    // If it's not a choice scenario, move further immediately
+    if (!inChoice) {
+        moveFurther();
+    }
+
     updatePage();
 }
 
@@ -73,14 +78,17 @@ function showImage() {
     // Display the image
     storyImageElement.src = storyPart.image;
 
+    // Reset the choice scenario flag after showing the image
+    inChoice = false;
+
     // Move further after showing the image
     moveFurther();
 }
 
 // Function to move further in the story
 function moveFurther() {
-    // Reset the choice scenario flag
-    inChoice = false;
+    // // Reset the choice scenario flag
+    // inChoice = false;
 
     // Move to the next story part
     const storyPart = getStoryPart(currentStoryPart);
