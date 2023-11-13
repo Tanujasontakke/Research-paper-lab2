@@ -20,7 +20,7 @@ function updatePage() {
     const storyPart = getStoryPart(currentStoryPart);
 
     // Update story text
-    storyTextElement.textContent = storyPart.text;
+    storyTextElement.innerHTML = storyPart.text;
 
     // Update story image
     storyImageElement.src = storyPart.image;
@@ -53,7 +53,7 @@ function makeChoice(choiceIndex) {
     currentStoryPart = chosenOption.nextPart;
     
     // Check if it's an ending
-    if (currentStoryPart === 'end') {
+    if (currentStoryPart.startsWith('end')) {
         endGame(chosenOption.image);
     } else {
         updatePage();
@@ -80,6 +80,12 @@ function endGame(image) {
     // Display relevant image for the ending
     storyImageElement.src = image;
 
+    // Show the restart button
+    const restartButton = document.createElement('button');
+    restartButton.textContent = 'Restart';
+    restartButton.addEventListener('click', startGame);
+    choicesElement.appendChild(restartButton);
+
     // Hide the back button at the end
     backButton.style.display = 'none';
 
@@ -98,9 +104,9 @@ function getStoryPart(partNumber) {
                 text: "Once upon a time, in a mystical land, there existed a maze known for its magical secrets and hidden treasures. Legend had it that those who navigated its twists and turns would encounter eight different endings, each holding a unique reward. As our story begins, you find yourself standing at the entrance of the maze. The tall hedges loom around you, and a mysterious glow emanates from within. You have four paths to choose from:",
                 choices: [
                     { text: "Follow the Moonlit Meadow", nextPart: 2 },
-                    { text: "Enter the Whispering Woods", nextPart: 3, image: "whispering-woods.jpg" },
-                    { text: "Explore the Crystal Caverns", nextPart: 4, image: "crystal-caverns.jpg" },
-                    { text: "Cross the Bridge of Reflection", nextPart: 5, image: "bridge-of-reflection.jpg" }
+                    { text: "Enter the Whispering Woods", nextPart: 3},
+                    { text: "Explore the Crystal Caverns", nextPart: 4 },
+                    { text: "Cross the Bridge of Reflection", nextPart: 5 }
                 ]
             };
 
@@ -108,26 +114,26 @@ function getStoryPart(partNumber) {
             return {
                 text: "The Moonlit Meadow: The path to the left takes you through a moonlit meadow. Will you follow the fireflies deeper into the enchanting night, or will you continue on the main trail?",
                 choices: [
-                    { text: "Follow the fireflies", nextPart: 6, image: "end1.jpg"},
-                    { text: "Continue on the main trail", nextPart: 7 }
+                    { text: "Embrace the tranquility", nextPart: 'end1', image: "./end1.jpg" },
+                    { text: "Explore further", nextPart: 3, image: "whispering-guardians.jpg" }
                 ]
             };
 
         case 3:
             return {
                 text: "The Whispering Woods: The right path leads into a dense forest where the trees seem to whisper ancient secrets. Do you trust the whispers and venture into the heart of the woods, or do you stay on the path?",
-                choices: [
-                    { text: "Venture into the heart of the woods", nextPart: 8 },
-                    { text: "Stay on the path", nextPart: 9 }
+                choices:[
+                    { text: "Learn from the guardians", nextPart: 'end2', image: "whispering-guardians.jpg" },
+                    { text: "Continue your journey", nextPart: 'end3', image: "crystal-nexus.jpg" }
                 ]
             };
 
         case 4:
             return {
                 text: "The Crystal Caverns: A hidden entrance leads downward into the depths of the maze. The air is cool, and crystals glisten on the walls. Will you explore the caverns, or continue forward?",
-                choices: [
-                    { text: "Explore the caverns", nextPart: 10 },
-                    { text: "Continue forward", nextPart: 11 }
+                choices:[
+                    { text: "Harness the artifact's power", nextPart: 'end3', image: "crystal-nexus.jpg" },
+                    { text: "Continue your exploration", nextPart: 'end4', image: "bridge-of-shadows.jpg" }
                 ]
             };
 
@@ -135,8 +141,8 @@ function getStoryPart(partNumber) {
             return {
                 text: "The Bridge of Reflection: A rickety bridge extends over a chasm, reflecting your choices so far. Do you cross the bridge or search for an alternative route?",
                 choices: [
-                    { text: "Cross the bridge", nextPart: 12 },
-                    { text: "Search for an alternative route", nextPart: 13 }
+                    { text: "Embrace the shadows", nextPart: 'end4', image: "bridge-of-shadows.jpg" },
+                    { text: "Find your way back to the maze", nextPart: 'end5', image: "sunlit-summit.jpg" }
                 ]
             };
 
