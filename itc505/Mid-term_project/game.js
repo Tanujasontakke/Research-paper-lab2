@@ -1,195 +1,123 @@
-const textElement = document.getElementById('text')
-const optionButtonsElement = document.getElementById('option-buttons')
+const storyTextElement = document.getElementById('story-text');
+const choicesElement = document.getElementById('choices');
 
-let state = {}
+// Initial game state
+let currentStoryPart = 1;
 
+// Function to start/restart the game
 function startGame() {
-  state = {}
-  showTextNode(1)
+    currentStoryPart = 1;
+    updatePage();
 }
 
-function showTextNode(textNodeIndex) {
-  const textNode = textNodes.find(textNode => textNode.id === textNodeIndex)
-  textElement.innerText = textNode.text
-  while (optionButtonsElement.firstChild) {
-    optionButtonsElement.removeChild(optionButtonsElement.firstChild)
-  }
+// Function to update the page with the current story part and choices
+function updatePage() {
+    const storyPart = getStoryPart(currentStoryPart);
 
-  textNode.options.forEach(option => {
-    if (showOption(option)) {
-      const button = document.createElement('button')
-      button.innerText = option.text
-      button.classList.add('btn')
-      button.addEventListener('click', () => selectOption(option))
-      optionButtonsElement.appendChild(button)
+    // Update story text
+    storyTextElement.textContent = storyPart.text;
+
+    // Clear previous choices
+    choicesElement.innerHTML = '';
+
+    // Create buttons for each choice
+    storyPart.choices.forEach((choice, index) => {
+        const button = document.createElement('button');
+        button.textContent = choice.text;
+        button.addEventListener('click', () => makeChoice(index));
+        choicesElement.appendChild(button);
+    });
+}
+
+// Function to handle player choices
+function makeChoice(choiceIndex) {
+    const storyPart = getStoryPart(currentStoryPart);
+    const chosenOption = storyPart.choices[choiceIndex];
+    
+    // Move to the next story part based on the chosen option
+    currentStoryPart = chosenOption.nextPart;
+    
+    // Check if it's an ending
+    if (currentStoryPart === 'end') {
+        endGame(chosenOption.image);
+    } else {
+        updatePage();
     }
-  })
 }
 
-function showOption(option) {
-  return option.requiredState == null || option.requiredState(state)
+// Function to handle game ending
+function endGame(image) {
+    // Display ending text
+    storyTextElement.textContent = 'The game has ended.';
+
+    // Remove choices
+    choicesElement.innerHTML = '';
+
+    // Display relevant image for the ending
+    const imgElement = document.createElement('img');
+    imgElement.src = image;
+    imgElement.alt = 'Ending Image';
+    choicesElement.appendChild(imgElement);
 }
 
-function selectOption(option) {
-  const nextTextNodeId = option.nextText
-  if (nextTextNodeId <= 0) {
-    return startGame()
-  }
-  state = Object.assign(state, option.setState)
-  showTextNode(nextTextNodeId)
+// Function to retrieve story part based on the current part number
+function getStoryPart(partNumber) {
+    switch (partNumber) {
+        case 1:
+            return {
+                text: "Once upon a time, in a mystical land, there existed a maze known for its magical secrets and hidden treasures. Legend had it that those who navigated its twists and turns would encounter eight different endings, each holding a unique reward. As our story begins, you find yourself standing at the entrance of the maze. The tall hedges loom around you, and a mysterious glow emanates from within. You have four paths to choose from:",
+                choices: [
+                    { text: "Follow the Moonlit Meadow", nextPart: 2 },
+                    { text: "Enter the Whispering Woods", nextPart: 3 },
+                    { text: "Explore the Crystal Caverns", nextPart: 4 },
+                    { text: "Cross the Bridge of Reflection", nextPart: 5 }
+                ]
+            };
+
+        case 2:
+            return {
+                text: "The Moonlit Meadow: The path to the left takes you through a moonlit meadow. Will you follow the fireflies deeper into the enchanting night, or will you continue on the main trail?",
+                choices: [
+                    { text: "Follow the fireflies", nextPart: 6 },
+                    { text: "Continue on the main trail", nextPart: 7 }
+                ]
+            };
+
+        case 3:
+            return {
+                text: "The Whispering Woods: The right path leads into a dense forest where the trees seem to whisper ancient secrets. Do you trust the whispers and venture into the heart of the woods, or do you stay on the path?",
+                choices: [
+                    { text: "Venture into the heart of the woods", nextPart: 8 },
+                    { text: "Stay on the path", nextPart: 9 }
+                ]
+            };
+
+        case 4:
+            return {
+                text: "The Crystal Caverns: A hidden entrance leads downward into the depths of the maze. The air is cool, and crystals glisten on the walls. Will you explore the caverns, or continue forward?",
+                choices: [
+                    { text: "Explore the caverns", nextPart: 10 },
+                    { text: "Continue forward", nextPart: 11 }
+                ]
+            };
+
+        case 5:
+            return {
+                text: "The Bridge of Reflection: A rickety bridge extends over a chasm, reflecting your choices so far. Do you cross the bridge or search for an alternative route?",
+                choices: [
+                    { text: "Cross the bridge", nextPart: 12 },
+                    { text: "Search for an alternative route", nextPart: 13 }
+                ]
+            };
+
+        // Add more cases for other story parts as needed
+
+        default:
+            // Handle cases not explicitly defined
+            return {};
+    }
 }
+Continue expanding the switch statement for each part of the story, including details and choices. Remember to replace the placeholder text with the actual story c
 
-const textNodes = [
-  {
-    id: 1,
-    text: 'You wake up in a strange place and you see a jar of blue goo near you.',
-    options: [
-      {
-        text: 'Take the goo',
-        setState: { blueGoo: true },
-        nextText: 2
-      },
-      {
-        text: 'Leave the goo',
-        nextText: 2
-      }
-    ]
-  },
-  {
-    id: 2,
-    text: 'You venture forth in search of answers to where you are when you come across a merchant.',
-    options: [
-      {
-        text: 'Trade the goo for a sword',
-        requiredState: (currentState) => currentState.blueGoo,
-        setState: { blueGoo: false, sword: true },
-        nextText: 3
-      },
-      {
-        text: 'Trade the goo for a shield',
-        requiredState: (currentState) => currentState.blueGoo,
-        setState: { blueGoo: false, shield: true },
-        nextText: 3
-      },
-      {
-        text: 'Ignore the merchant',
-        nextText: 3
-      }
-    ]
-  },
-  {
-    id: 3,
-    text: 'After leaving the merchant you start to feel tired and stumble upon a small town next to a dangerous looking castle.',
-    options: [
-      {
-        text: 'Explore the castle',
-        nextText: 4
-      },
-      {
-        text: 'Find a room to sleep at in the town',
-        nextText: 5
-      },
-      {
-        text: 'Find some hay in a stable to sleep in',
-        nextText: 6
-      }
-    ]
-  },
-  {
-    id: 4,
-    text: 'You are so tired that you fall asleep while exploring the castle and are killed by some terrible monster in your sleep.',
-    options: [
-      {
-        text: 'Restart',
-        nextText: -1
-      }
-    ]
-  },
-  {
-    id: 5,
-    text: 'Without any money to buy a room you break into the nearest inn and fall asleep. After a few hours of sleep the owner of the inn finds you and has the town guard lock you in a cell.',
-    options: [
-      {
-        text: 'Restart',
-        nextText: -1
-      }
-    ]
-  },
-  {
-    id: 6,
-    text: 'You wake up well rested and full of energy ready to explore the nearby castle.',
-    options: [
-      {
-        text: 'Explore the castle',
-        nextText: 7
-      }
-    ]
-  },
-  {
-    id: 7,
-    text: 'While exploring the castle you come across a horrible monster in your path.',
-    options: [
-      {
-        text: 'Try to run',
-        nextText: 8
-      },
-      {
-        text: 'Attack it with your sword',
-        requiredState: (currentState) => currentState.sword,
-        nextText: 9
-      },
-      {
-        text: 'Hide behind your shield',
-        requiredState: (currentState) => currentState.shield,
-        nextText: 10
-      },
-      {
-        text: 'Throw the blue goo at it',
-        requiredState: (currentState) => currentState.blueGoo,
-        nextText: 11
-      }
-    ]
-  },
-  {
-    id: 8,
-    text: 'Your attempts to run are in vain and the monster easily catches.',
-    options: [
-      {
-        text: 'Restart',
-        nextText: -1
-      }
-    ]
-  },
-  {
-    id: 9,
-    text: 'You foolishly thought this monster could be slain with a single sword.',
-    options: [
-      {
-        text: 'Restart',
-        nextText: -1
-      }
-    ]
-  },
-  {
-    id: 10,
-    text: 'The monster laughed as you hid behind your shield and ate you.',
-    options: [
-      {
-        text: 'Restart',
-        nextText: -1
-      }
-    ]
-  },
-  {
-    id: 11,
-    text: 'You threw your jar of goo at the monster and it exploded. After the dust settled you saw the monster was destroyed. Seeing your victory you decide to claim this castle as your and live out the rest of your days there.',
-    options: [
-      {
-        text: 'Congratulations. Play Again.',
-        nextText: -1
-      }
-    ]
-  }
-]
-
-startGame()
+// Start the game when the page loads
+startGame();
