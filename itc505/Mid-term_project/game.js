@@ -83,11 +83,11 @@ function endGame(image) {
     // Hide the back button at the end
     backButton.style.display = 'none';
 
-    // // Display relevant image for the ending
-    // const imgElement = document.createElement('img');
-    // imgElement.src = image;
-    // imgElement.alt = 'Ending Image';
-    // choicesElement.appendChild(imgElement);
+    // Display relevant image for the ending
+    const imgElement = document.createElement('img');
+    imgElement.src = image;
+    imgElement.alt = 'Ending Image';
+    choicesElement.appendChild(imgElement);
 }
 
 // Function to retrieve story part based on the current part number
