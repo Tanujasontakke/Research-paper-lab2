@@ -1,7 +1,6 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-<<<<<<< HEAD
 }
 
 header {
@@ -59,41 +58,6 @@ header img {
     display: flex;
     flex-direction: column;
     align-items: center;
-=======
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f0f0f0;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#tic-tac-toe {
-    display: grid;
-    grid-template-columns: repeat(3, 80px);
-    gap: 5px;
-}
-
-.cell {
-    width: 80px;
-    height: 80px;
-    border: 1px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-#winner-display {
-    margin-top: 20px;
-    font-size: 18px;
->>>>>>> 95731e786ae17ee0d79758320bf78bda4d3b796e
 }
 
 #tic-tac-toe {
