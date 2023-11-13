@@ -2,6 +2,7 @@ body {
     font-family: 'cursive', sans-serif;
     text-align: center;
     background-image: url("./black.jpg");
+    color: white;
 }
 
 #story {
@@ -9,7 +10,7 @@ body {
     padding: 20px;
     border: 2px solid #ccc;
     border-radius: 10px;
-    color: white;
+    
 }
 
 #choices {
