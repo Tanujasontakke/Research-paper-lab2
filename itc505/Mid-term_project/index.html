@@ -7,12 +7,16 @@
     <title>The Magical Maze</title>
 </head>
 <body>
-    <div id="story">
-      <p id="story-text">Loading...</p>
-        <div id="choices">
-            <!-- Choices buttons will be added dynamically here -->
-        </div>
+  <div id="story">
+    <div id="image-container">
+        <img id="story-image" src="" alt="Story Image">
     </div>
+    <p id="story-text">Loading...</p>
+    <div id="choices">
+        <!-- Choices buttons will be added dynamically here -->
+    </div>
+    <button id="back-button" style="display: none;" onclick="goBack()">Go Back</button>
+</div>
     <script src="game.js"></script>
 </body>
 </html>
