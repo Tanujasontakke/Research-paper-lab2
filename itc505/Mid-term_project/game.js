@@ -59,18 +59,22 @@ function updatePage() {
 
 // Function to handle player choices
 function makeChoice(choiceIndex) {
+    const storyPart = getStoryPart(currentStoryPart);
+    const chosenOption = storyPart.choices[choiceIndex];
 
     // Save the current choice for possible backtracking
     // previousChoices.push(currentStoryPart);
 
-    const storyPart = getStoryPart(currentStoryPart);
-    const chosenOption = storyPart.choices[choiceIndex];
-    
     // Move to the next story part based on the chosen option
     currentStoryPart = chosenOption.nextPart;
-    
+
     // Check if it's a choice scenario
     inChoice = currentStoryPart.startsWith('choice');
+
+    // If it's not a choice scenario, move further immediately
+    if (!inChoice) {
+        moveFurther();
+    }
 
     updatePage();
 }
@@ -91,6 +95,9 @@ function showImage() {
     // Display the image
     storyImageElement.src = storyPart.image;
 
+    // Reset the choice scenario flag after showing the image
+    inChoice = false;
+
     // Move further after showing the image
     moveFurther();
 }
@@ -104,7 +111,13 @@ function moveFurther() {
     const storyPart = getStoryPart(currentStoryPart);
     currentStoryPart = storyPart.nextPart;
 
-    updatePage();
+    // If it's a choice scenario, update the page to show buttons
+    if (currentStoryPart.startsWith('choice')) {
+        updatePage();
+    } else {
+        // If it's not a choice scenario, move further immediately
+        moveFurther();
+    }
 }
 
 // Function to handle game ending
