@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'cursive', sans-serif;
     text-align: center;
     background-image: url("./black.jpg");
 }
@@ -9,7 +9,7 @@ body {
     padding: 20px;
     border: 2px solid #ccc;
     border-radius: 10px;
-    text-emphasis-color: white;
+    color: white;
 }
 
 #choices {
@@ -20,5 +20,5 @@ button {
     margin: 5px;
     padding: 10px;
     cursor: pointer;
-    text-emphasis-color: black;
+    color: black;
 }
