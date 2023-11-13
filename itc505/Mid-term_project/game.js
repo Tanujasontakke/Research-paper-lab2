@@ -117,7 +117,7 @@ function getStoryPart(partNumber) {
             return {};
     }
 }
-Continue expanding the switch statement for each part of the story, including details and choices. Remember to replace the placeholder text with the actual story c
+
 
 // Start the game when the page loads
 startGame();
