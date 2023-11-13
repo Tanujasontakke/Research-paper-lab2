@@ -147,7 +147,7 @@ function getStoryPart(partNumber) {
             return {
                 text: "You've chosen to follow the Moonlit Meadow. The image is shown. What would you like to do now?",
                 choices: [
-                    { text: "Move Further", nextPart: 2, image: "" } // Placeholder for the next part
+                    { text: "Move Further", nextPart: 2, image: "end1.jpg" } // Placeholder for the next part
                 ]
             };
         case 'choice1b_showImage':
