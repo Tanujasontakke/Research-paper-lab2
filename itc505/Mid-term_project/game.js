@@ -7,12 +7,14 @@ const restartButton = document.getElementById('restart-button');
 // Initial game state
 let currentStoryPart = 1;
 // let previousChoices = [];
+let inChoice = false; // To track if the player is in a choice scenario
 
 
 // Function to start/restart the game
 function startGame() {
     currentStoryPart = 1;
     // previousChoices = [];
+    inChoice = false;
     updatePage();
 }
 
@@ -29,13 +31,26 @@ function updatePage() {
     // Clear previous choices
     choicesElement.innerHTML = '';
 
-    // Create buttons for each choice
-    storyPart.choices.forEach((choice, index) => {
-        const button = document.createElement('button');
-        button.textContent = choice.text;
-        button.addEventListener('click', () => makeChoice(index));
-        choicesElement.appendChild(button);
-    });
+     // If it's a choice scenario, show two buttons
+     if (inChoice) {
+        const showImageButton = document.createElement('button');
+        showImageButton.textContent = 'Show Image';
+        showImageButton.addEventListener('click', () => showImage());
+        choicesElement.appendChild(showImageButton);
+
+        const moveFurtherButton = document.createElement('button');
+        moveFurtherButton.textContent = 'Move Further';
+        moveFurtherButton.addEventListener('click', () => moveFurther());
+        choicesElement.appendChild(moveFurtherButton);
+    } else {
+        // Create buttons for each choice
+        storyPart.choices.forEach((choice, index) => {
+            const button = document.createElement('button');
+            button.textContent = choice.text;
+            button.addEventListener('click', () => makeChoice(index));
+            choicesElement.appendChild(button);
+        });
+    }
 
     // Show the back button if there are previous choices
     // backButton.style.display = previousChoices.length > 0 ? 'block' : 'none';
@@ -54,12 +69,10 @@ function makeChoice(choiceIndex) {
     // Move to the next story part based on the chosen option
     currentStoryPart = chosenOption.nextPart;
     
-    // Check if it's an ending
-    if (currentStoryPart.startsWith('end')) {
-        endGame(chosenOption.image);
-    } else {
-        updatePage();
-    }
+    // Check if it's a choice scenario
+    inChoice = currentStoryPart.startsWith('choice');
+
+    updatePage();
 }
 
 // Function to handle going back to the previous set of choices
@@ -71,6 +84,29 @@ function makeChoice(choiceIndex) {
 //     }
 // }
 
+// Function to show the image
+function showImage() {
+    const storyPart = getStoryPart(currentStoryPart);
+
+    // Display the image
+    storyImageElement.src = storyPart.image;
+
+    // Move further after showing the image
+    moveFurther();
+}
+
+// Function to move further in the story
+function moveFurther() {
+    // Reset the choice scenario flag
+    inChoice = false;
+
+    // Move to the next story part
+    const storyPart = getStoryPart(currentStoryPart);
+    currentStoryPart = storyPart.nextPart;
+
+    updatePage();
+}
+
 // Function to handle game ending
 function endGame(image) {
     // Display ending text
@@ -80,7 +116,7 @@ function endGame(image) {
     choicesElement.innerHTML = '';
 
     // Display relevant image for the ending
-    storyImageElement.src = image;
+    // storyImageElement.src = image;
 
     // Show the restart button
     // const restartButton = document.createElement('button');
@@ -117,64 +153,81 @@ function getStoryPart(partNumber) {
             return {
                 text: "The Moonlit Meadow: The path to the left takes you through a moonlit meadow. Will you follow the fireflies deeper into the enchanting night, or will you continue on the main trail?",
                 choices: [
-                    { text: "Embrace the tranquility", nextPart: 'end1', image: "./end1.jpg" },
-                    { text: "Explore further", nextPart: 3, image: "whispering-guardians.jpg" }
+                    { text: "Embrace the tranquility", nextPart: 'choice1a', image: "serene-sanctuary.jpg" },
+                    { text: "Explore further", nextPart: 'choice1b', image: "whispering-guardians.jpg" }
                 ]
             };
 
-        case 3:
-            return {
-                text: "The Whispering Woods: The right path leads into a dense forest where the trees seem to whisper ancient secrets. Do you trust the whispers and venture into the heart of the woods, or do you stay on the path?",
-                choices:[
-                    { text: "Learn from the guardians", nextPart: 'end2', image: "whispering-guardians.jpg" },
-                    { text: "Continue your journey", nextPart: 'end3', image: "crystal-nexus.jpg" }
-                ]
-            };
+            case 'choice1a':
+                return {
+                    text: "You've chosen to embrace the tranquility. What would you like to do?",
+                    choices: [
+                        { text: "Show Image", nextPart: 'end1', image: "serene-sanctuary.jpg" },
+                        { text: "Move Further", nextPart: 6, image: "" } // Placeholder for the next part
+                    ]
+                };
+            case 'choice1b':
+                return {
+                    text: "You've chosen to explore further. What would you like to do?",
+                    choices: [
+                        { text: "Show Image", nextPart: 'end2', image: "whispering-guardians.jpg" },
+                        { text: "Move Further", nextPart: 7, image: "" } // Placeholder for the next part
+                    ]
+                };   
 
-        case 4:
-            return {
-                text: "The Crystal Caverns: A hidden entrance leads downward into the depths of the maze. The air is cool, and crystals glisten on the walls. Will you explore the caverns, or continue forward?",
-                choices:[
-                    { text: "Harness the artifact's power", nextPart: 'end3', image: "crystal-nexus.jpg" },
-                    { text: "Continue your exploration", nextPart: 'end4', image: "bridge-of-shadows.jpg" }
-                ]
-            };
+        // case 3:
+        //     return {
+        //         text: "The Whispering Woods: The right path leads into a dense forest where the trees seem to whisper ancient secrets. Do you trust the whispers and venture into the heart of the woods, or do you stay on the path?",
+        //         choices:[
+        //             { text: "Learn from the guardians", nextPart: 'end2', image: "whispering-guardians.jpg" },
+        //             { text: "Continue your journey", nextPart: 'end3', image: "crystal-nexus.jpg" }
+        //         ]
+        //     };
 
-        case 5:
-            return {
-                text: "The Bridge of Reflection: A rickety bridge extends over a chasm, reflecting your choices so far. Do you cross the bridge or search for an alternative route?",
-                choices: [
-                    { text: "Embrace the shadows", nextPart: 'end4', image: "bridge-of-shadows.jpg" },
-                    { text: "Find your way back to the maze", nextPart: 'end5', image: "sunlit-summit.jpg" }
-                ]
-            };
+        // case 4:
+        //     return {
+        //         text: "The Crystal Caverns: A hidden entrance leads downward into the depths of the maze. The air is cool, and crystals glisten on the walls. Will you explore the caverns, or continue forward?",
+        //         choices:[
+        //             { text: "Harness the artifact's power", nextPart: 'end3', image: "crystal-nexus.jpg" },
+        //             { text: "Continue your exploration", nextPart: 'end4', image: "bridge-of-shadows.jpg" }
+        //         ]
+        //     };
 
-        // Add more cases for other story parts as needed
-        case 'end1':
-            return {
-                text: "You have found the Serene Sanctuary...",
-                choices: []
-            };
-        case 'end2':
-            return {
-                text: "You have encountered the Whispering Guardians...",
-                choices: []
-            };
-        case 'end3':
-            return {
-                text: "You have reached the Crystal Nexus...",
-                choices: []
-            };
-        case 'end4':
-            return {
-                text: "You have entered the Bridge of Shadows...",
-                choices: []
-            };
-        case 'end5':
-            return {
-                text: "You have reached the Sunlit Summit...",
-                choices: []
-            };
+        // case 5:
+        //     return {
+        //         text: "The Bridge of Reflection: A rickety bridge extends over a chasm, reflecting your choices so far. Do you cross the bridge or search for an alternative route?",
+        //         choices: [
+        //             { text: "Embrace the shadows", nextPart: 'end4', image: "bridge-of-shadows.jpg" },
+        //             { text: "Find your way back to the maze", nextPart: 'end5', image: "sunlit-summit.jpg" }
+        //         ]
+        //     };
+
+        // // Add more cases for other story parts as needed
+        // case 'end1':
+        //     return {
+        //         text: "You have found the Serene Sanctuary...",
+        //         choices: []
+        //     };
+        // case 'end2':
+        //     return {
+        //         text: "You have encountered the Whispering Guardians...",
+        //         choices: []
+        //     };
+        // case 'end3':
+        //     return {
+        //         text: "You have reached the Crystal Nexus...",
+        //         choices: []
+        //     };
+        // case 'end4':
+        //     return {
+        //         text: "You have entered the Bridge of Shadows...",
+        //         choices: []
+        //     };
+        // case 'end5':
+        //     return {
+        //         text: "You have reached the Sunlit Summit...",
+        //         choices: []
+        //     };
 
         default:
             // Handle cases not explicitly defined
