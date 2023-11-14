@@ -20,6 +20,8 @@ function updatePage() {
     // Update story text
     storyTextElement.innerHTML = storyPart.text;
 
+    const storyImageElement = document.getElementById('story-image');
+
     // Update story image
     storyImageElement.src = storyPart.image || '';
 
