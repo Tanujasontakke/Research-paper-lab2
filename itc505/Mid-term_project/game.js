@@ -1,154 +1,78 @@
 const storyTextElement = document.getElementById('story-text');
 const storyImageElement = document.getElementById('story-image');
 const choicesElement = document.getElementById('choices');
-// const backButton = document.getElementById('back-button');
 const restartButton = document.getElementById('restart-button');
 
-// Initial game state
 let currentStoryPart = 1;
-// let previousChoices = [];
-let inChoice = false; // To track if the player is in a choice scenario
-
 
 // Function to start/restart the game
 function startGame() {
     currentStoryPart = 1;
-    // previousChoices = [];
-    inChoice = false;
+   
     updatePage();
 }
 
 // Function to update the page with the current story part and choices
 function updatePage() {
+    console.log('Current Story Part:', currentStoryPart);
     const storyPart = getStoryPart(currentStoryPart);
 
     // Update story text
     storyTextElement.innerHTML = storyPart.text;
 
     // Update story image
-    storyImageElement.src = storyPart.image;
+    storyImageElement.src = storyPart.image || '';
 
     // Clear previous choices
     choicesElement.innerHTML = '';
+    
 
-     // If it's a choice scenario, show two buttons
-     if (inChoice) {
-        const showImageButton = document.createElement('button');
-        showImageButton.textContent = 'Show Image';
-        showImageButton.addEventListener('click', () => showImage());
-        choicesElement.appendChild(showImageButton);
+     // Create buttons for each choice
+     storyPart.choices.forEach((choice, index) => {
+        const button = document.createElement('button');
+        button.textContent = choice.text;
+        button.addEventListener('click', () => makeChoice(index));
+        choicesElement.appendChild(button);
+    });
 
-        const moveFurtherButton = document.createElement('button');
-        moveFurtherButton.textContent = 'Move Further';
-        moveFurtherButton.addEventListener('click', () => moveFurther());
-        choicesElement.appendChild(moveFurtherButton);
-    } else {
-        // Create buttons for each choice
-        storyPart.choices.forEach((choice, index) => {
-            const button = document.createElement('button');
-            button.textContent = choice.text;
-            button.addEventListener('click', () => makeChoice(index));
-            choicesElement.appendChild(button);
-        });
-    }
-
-    // Show the back button if there are previous choices
-    // backButton.style.display = previousChoices.length > 0 ? 'block' : 'none';
-    restartButton.style.display = typeof currentStoryPart === 'string' && currentStoryPart.startsWith('end') ? 'block' : 'none';
+    
+    restartButton.style.display = currentStoryPart.startsWith('end') ? 'block' : 'none';
 }
+
 
 // Function to handle player choices
 function makeChoice(choiceIndex) {
     const storyPart = getStoryPart(currentStoryPart);
     const chosenOption = storyPart.choices[choiceIndex];
 
-    // Save the current choice for possible backtracking
-    // previousChoices.push(currentStoryPart);
-
+    
     // Move to the next story part based on the chosen option
     currentStoryPart = chosenOption.nextPart;
 
-    // Check if it's a choice scenario
-    inChoice = currentStoryPart.startsWith('choice');
-
-    // If it's not a choice scenario, move further immediately
-    if (!inChoice) {
-        moveFurther();
-    }
-
-    updatePage();
-}
-
-// Function to handle going back to the previous set of choices
-// function goBack() {
-//     if (previousChoices.length > 0) {
-//         // Pop the previous choice and go back
-//         currentStoryPart = previousChoices.pop();
-//         updatePage();
-//     }
-// }
-
-// Function to show the image
-function showImage() {
-    const storyPart = getStoryPart(currentStoryPart);
-
-    // Check if the story part has an image property
-    if (storyPart.image) {
-        // Display the image
-        storyImageElement.src = storyPart.image;
-    }
-
-    // Reset the choice scenario flag after showing the image
-    inChoice = false;
-
-    // Move further after showing the image
-    moveFurther();
-}
-
-// Function to move further in the story
-function moveFurther() {
-    // Reset the choice scenario flag
-    inChoice = false;
-
-    // Move to the next story part
-    const storyPart = getStoryPart(currentStoryPart);
-    currentStoryPart = storyPart.nextPart;
-
-    // If it's a choice scenario, update the page to show buttons
-    if (currentStoryPart.startsWith('choice')) {
-        updatePage();
+     // Check if it's an ending
+     if (currentStoryPart.startsWith('end')) {
+        endGame(chosenOption.image);
     } else {
-        // If it's not a choice scenario, move further immediately
-        moveFurther();
+        updatePage();
     }
 }
+
 
 // Function to handle game ending
 function endGame(image) {
     // Display ending text
-    storyTextElement.textContent = 'The game has ended.';
+    storyTextElement.textContent = 'Thank you for exploring that world.';
 
     // Remove choices
     choicesElement.innerHTML = '';
 
-    // Display relevant image for the ending
-    // storyImageElement.src = image;
+     // Display relevant image for the ending
+     storyImageElement.src = image;
 
-    // Show the restart button
-    // const restartButton = document.createElement('button');
-    // restartButton.textContent = 'Restart';
-    // restartButton.addEventListener('click', startGame);
-    // choicesElement.appendChild(restartButton);
-
-    // Hide the back button at the end
-    // backButton.style.display = 'none';
-    restartButton.style.display = 'block';
-
-    // // Display relevant image for the ending
-    // const imgElement = document.createElement('img');
-    // imgElement.src = image;
-    // imgElement.alt = 'Ending Image';
-    // choicesElement.appendChild(imgElement);
+     // Show the restart button
+     restartButton.style.display = 'block';
+     
+    
 }
 
 // Function to retrieve story part based on the current part number
@@ -158,96 +82,172 @@ function getStoryPart(partNumber) {
             return {
                 text: "Once upon a time, in a mystical land, there existed a maze known for its magical secrets and hidden treasures. Legend had it that those who navigated its twists and turns would encounter eight different endings, each holding a unique reward. As our story begins, you find yourself standing at the entrance of the maze. The tall hedges loom around you, and a mysterious glow emanates from within. You have four paths to choose from:",
                 choices: [
-                    { text: "Follow the Moonlit Meadow", nextPart: 2 },
-                    { text: "Enter the Whispering Woods", nextPart: 3},
-                    { text: "Explore the Crystal Caverns", nextPart: 4 },
-                    { text: "Cross the Bridge of Reflection", nextPart: 5 }
+                    { text: "Follow the Moonlit Meadow", nextPart: 'Moonlit' },
+                    { text: "Enter the Whispering Woods", nextPart: 'Woods'},
+                    { text: "Explore the Crystal Caverns", nextPart: 'crystal' },
+                    { text: "Cross the Bridge of Reflection", nextPart: 'bridge' }
                 ]
             };
 
-        case 2:
+        case 'Moonlit':
             return {
                 text: "The Moonlit Meadow: The path to the left takes you through a moonlit meadow. Will you follow the fireflies deeper into the enchanting night, or will you continue on the main trail?",
                 choices: [
-                    { text: "Embrace the tranquility", nextPart: 'end1', image: "./end1.jpg" },
-                    { text: "Explore New", nextPart: 'end8', image: "./end8.jpg" }
+                    { text: "Embrace the tranquility", nextPart: 'choice1'},
+                    { text: "Explore New", nextPart: 'explorenew1' }
                 ]
             };
 
-        case 3:
+        case 'choice1':
+            return {
+                text: "You have found the Serene Sanctuary. What would you like to do?",
+                choices: [
+                    { text: "Show Image", nextPart: 'showImage1' },
+                    { text: "Complete the travel", nextPart: 'end1' }
+                ]
+            };
+
+        case 'showImage1':
+            return {
+                text: "Here is the image of the Serene Sanctuary:",
+                image: "end1.jpg",
+                choices: [
+                    { text: "Go to end", nextPart: 'end1' }
+                ]
+            };
+
+        case 'explorenew1':
+            return {
+                    text: "You have entered a new world!..",
+                    image: "end8.jpg",
+                    choices: [
+                        { text: "Go to end", nextPart: 'end1' }
+                    ]
+                };
+
+        case 'end1':
+            return {
+                text: "You have come to end through a route...",
+                choices: [
+                    { text: "Restart", nextPart: 1}
+                ]
+            };
+
+        // Add more cases for other story parts as needed-------------
+        case 'Woods':
             return {
                 text: "The Whispering Woods: The right path leads into a dense forest where the trees seem to whisper ancient secrets. Do you trust the whispers and venture into the heart of the woods, or do you stay on the path?",
-                choices:[
-                    { text: "Learn from the guardians", nextPart: 'end2', image: "end2.jpg" },
-                    { text: "Continue your journey", nextPart: 'end7', image: "end7.jpg" }
+                choices: [
+                    { text: "Learn from the guardians", nextPart: 'choice2'},
+                    { text: "Continue your journey", nextPart: 'explorenew2' }
                 ]
             };
 
-        case 4:
+            case 'choice2':
+                return {
+                    text: "Guardians have a different world for you. What would you like to do?",
+                    choices: [
+                        { text: "Enter the world", nextPart: 'showImage2' },
+                        { text: "Go to end", nextPart: 'end1' }
+                    ]
+                };
+
+         case 'showImage2':
+                return {
+                        text: "Explore this world....",
+                        image: "end2.jpg",
+                        choices: [
+                            { text: "Go to end", nextPart: 'end1' }
+                        ]
+                    };
+
+         case 'explorenew2':
+                 return {
+                                text: "You have entered a new world!..",
+                                image: "end7.jpg",
+                                choices: [
+                                    { text: "Go to end", nextPart: 'end1' }
+                                ]
+                            };
+
+       //  ---------------------------------   
+       case 'crystal':
             return {
                 text: "The Crystal Caverns: A hidden entrance leads downward into the depths of the maze. The air is cool, and crystals glisten on the walls. Will you explore the caverns, or continue forward?",
-                choices:[
-                    { text: "Harness the artifact's power", nextPart: 'end3', image: "end3.jpg" },
-                    { text: "Continue your exploration", nextPart: 'end6', image: "end6.jpg" }
+                choices: [
+                    { text: "Harness the artifact's power", nextPart: 'choice3' },
+                    { text: "Continue your exploration", nextPart: 'explorenew3'}
                 ]
             };
 
-        case 5:
+            case 'choice3':
+                return {
+                    text: "World of glitters and value awaits you. What would you like to do?",
+                    choices: [
+                        { text: "Enter the world", nextPart: 'showImage3' },
+                        { text: "Go to end", nextPart: 'end1' }
+                    ]
+                };
+
+         case 'showImage3':
+                return {
+                        text: "Explore this world....",
+                        image: "end3.jpg",
+                        choices: [
+                            { text: "Go to end", nextPart: 'end1' }
+                        ]
+                    };
+
+         case 'explorenew3':
+                 return {
+                                text: "You have entered another new world!..",
+                                image: "end6.jpg",
+                                choices: [
+                                    { text: "Go to end", nextPart: 'end1' }
+                                ]
+                            };
+        // ----------------------------------    
+        case 'bridge':
             return {
                 text: "The Bridge of Reflection: A rickety bridge extends over a chasm, reflecting your choices so far. Do you cross the bridge or search for an alternative route?",
                 choices: [
-                    { text: "Embrace the shadows", nextPart: 'end4', image: "end4.jpg" },
-                    { text: "Find your way back to the maze", nextPart: 'end5', image: "end5.jpg" }
+                    { text: "Cross the Bridge", nextPart: 'choice4' },
+                    { text: "Find your way back to the maze", nextPart: 'explorenew4'}
                 ]
             };
 
-        // Add more cases for other story parts as needed
-        case 'end1':
-            return {
-                text: "You have found the Serene Sanctuary...",
-                choices: [
-                    { text: "Restart", nextPart: 1, image: "restart.jpg" }
-                ]
-            };
-        case 'end2':
-            return {
-                text: "You have encountered the Whispering Guardians...",
-                choices: []
-            };
-        case 'end3':
-            return {
-                text: "You have reached the Crystal Nexus...",
-                choices: []
-            };
-        case 'end4':
-            return {
-                text: "You have entered the Bridge of Shadows...",
-                choices: []
-            };
-        case 'end5':
-            return {
-                text: "You have reached the Sunlit Summit...",
-                choices: []
-            };
-        case 'end6':
-            return {
-                text: "You have reached the Sunlit Summit...",
-                choices: []
-            };
-        case 'end7':
-            return {
-                    text: "You have reached the Sunlit Summit...",
-                    choices: []
+            case 'choice4':
+                return {
+                    text: "World of glitters and value awaits you. What would you like to do?",
+                    choices: [
+                        { text: "Enter the world", nextPart: 'showImage4' },
+                        { text: "Go to end", nextPart: 'end1' }
+                    ]
                 };
-        case 'end8':
-            return {
-                        text: "You have reached the Sunlit Summit...",
-                        choices: []
+
+         case 'showImage4':
+                return {
+                        text: "Explore this world....",
+                        image: "end4.jpg",
+                        choices: [
+                            { text: "Go to end", nextPart: 'end1' }
+                        ]
                     };
 
+         case 'explorenew4':
+                 return {
+                                text: "You have entered another new world!..",
+                                image: "end5.jpg",
+                                choices: [
+                                    { text: "Go to end", nextPart: 'end1' }
+                                ]
+                            };
+         //----------------------
+        
         default:
             // Handle cases not explicitly defined
             return {};
+
     }
 }
 
