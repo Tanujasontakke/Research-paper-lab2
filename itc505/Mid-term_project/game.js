@@ -38,7 +38,7 @@ function updatePage() {
     });
 
     
-    restartButton.style.display = currentStoryPart.startsWith('end') ? 'block' : 'none';
+    restartButton.style.display = currentStoryPart === 1 || currentStoryPart.startsWith('end') ? 'none' : 'block';
 }
 
 
