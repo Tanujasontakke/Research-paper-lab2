@@ -214,7 +214,7 @@ function getStoryPart(partNumber) {
                 text: "The Bridge of Reflection: A rickety bridge extends over a chasm, reflecting your choices so far. Do you cross the bridge or search for an alternative route?",
                 choices: [
                     { text: "Cross the Bridge", nextPart: 'choice4' },
-                    { text: "Find your way back to the maze", nextPart: 'explorenew4'}
+                    { text: "Find a new way", nextPart: 'explorenew4'}
                 ]
             };
 
