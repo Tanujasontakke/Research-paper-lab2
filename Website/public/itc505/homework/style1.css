@@ -1,0 +1,49 @@
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(
+    to right,
+    #5c5d5d,
+    #101010
+  );
+}
+
+@font-face{
+   font-family: 'bloody';
+   src: url(fonts/BLOODY.TTF);
+   font-style: normal;
+   font-weight: 100;
+
+}
+@font-face{
+  font-family: 'egory';
+  src: url(fonts/EgorycastlePersonal.ttf);
+  font-style: normal;
+  font-weight: 100;
+
+}
+@font-face {
+  font-family: 'october';
+  src: url(fonts/October\ Twilight.ttf);
+  font-weight: normal;
+} 
+h1 {
+  font-size: 4.7em;
+  font-family: egory;
+  color: #9d58f0;
+}
+h2 {
+  font-family: bloody;
+  font-size: 3.6em;
+  color: #fae71d;
+}
+p {
+  font-family: october;
+  font-size: 1.2em;
+  max-width: 70%;
+  text-align: center;
+  color: #f49506;
+}

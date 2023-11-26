@@ -1,0 +1,35 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background-image: url("./black.jpg");
+    color: white;
+}
+
+
+#story {
+    margin: 20px;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    
+}
+
+
+#choices {
+    margin-top: 20px;
+}
+
+button {
+    margin: 5px;
+    padding: 10px;
+    cursor: pointer;
+    color: black;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: left;
+    padding: 10px;
+    height: 150px;
+}

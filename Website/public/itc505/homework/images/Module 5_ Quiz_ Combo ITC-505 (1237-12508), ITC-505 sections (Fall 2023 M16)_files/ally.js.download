@@ -1,0 +1,6 @@
+window.ALLY_CFG = {
+    'baseUrl': 'https://prod.ally.ac',
+    'clientId': 14816,
+    'lti13Id': '196640000000000120'
+};
+$.getScript(ALLY_CFG.baseUrl + '/integration/canvas/ally.js');
