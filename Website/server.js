@@ -10,6 +10,21 @@ server.get('/do_a_random', (req, res) => {
   res.send(`Your number is: ${Math.floor(Math.random() * 100) + 1}`)
 })
 
+// Serve the HTML form
+server.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// Handle form submission
+server.post('/', (req, res) => {
+  const { noun, verb, adjective, adverb, place } = req.body;
+
+  // Create a simple mad lib
+  const madLib = `Once upon a time, there was a ${adjective} ${noun} who loved to ${verb} ${adverb} in ${place}.`;
+
+  // Send the filled mad lib as the response
+  res.send(`<h2>Your Mad Lib:</h2><p>${madLib}</p>`);
+});
 
 // Setup static page serving for all the pages in "public"
 const publicServedFilesPath = path.join(__dirname, 'public')
