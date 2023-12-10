@@ -1,0 +1,30 @@
+body {
+    background-color: paleturquoise; /* Set your desired background color */
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    gap: 5px;
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.is-off {
+    background-color: black;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
