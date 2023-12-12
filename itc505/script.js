@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateMovesCount() {
         movesCount++;
-        movesDisplay.textContent = `Moves Count: ${movesCount}`;
+        movesDisplay.textContent = `Moves: ${movesCount}`;
     }
 
     initializeBoard();
