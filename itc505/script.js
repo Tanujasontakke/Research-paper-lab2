@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const board = document.getElementById("board");
     const resetButton = document.createElement("button");
+    const movesDisplay = document.createElement("p"); // Added for displaying the moves count
+    let movesCount = 0; // Variable to track moves count
+
     resetButton.textContent = "Reset";
     resetButton.addEventListener("click", resetBoard);
 
@@ -11,12 +14,16 @@ document.addEventListener("DOMContentLoaded", function () {
             const square = document.createElement("div");
             square.classList.add("square");
             square.dataset.index = i;
-            square.addEventListener("click", toggleSquare);
+            square.addEventListener("click", () => {
+                toggleSquare(square);
+                updateMovesCount();
+            });
             board.appendChild(square);
         }
 
-        // Append the reset button to the container
+        // Append the reset button and moves display to the container
         document.getElementById("container").appendChild(resetButton);
+        document.getElementById("container").appendChild(movesDisplay);
 
         randomizeBoard();
     }
@@ -24,17 +31,18 @@ document.addEventListener("DOMContentLoaded", function () {
     function randomizeBoard() {
         for (let i = 0; i < gridSize * gridSize; i++) {
             if (Math.random() > 0.5) {
-                toggleSquare.call(board.children[i]);
+                toggleSquare(board.children[i]);
+                updateMovesCount(); // Increment moves count for each randomization
             }
         }
     }
 
-    function toggleSquare() {
-        const row = Math.floor(this.dataset.index / gridSize);
-        const col = this.dataset.index % gridSize;
+    function toggleSquare(square) {
+        const row = Math.floor(square.dataset.index / gridSize);
+        const col = square.dataset.index % gridSize;
 
         // Toggle the clicked square
-        this.classList.toggle("is-off");
+        square.classList.toggle("is-off");
 
         // Toggle the immediate neighbors
         toggleCell(row, col - 1); // left
@@ -68,6 +76,13 @@ document.addEventListener("DOMContentLoaded", function () {
             square.classList.remove("is-off");
         });
         randomizeBoard();
+        movesCount = 0; // Reset moves count
+        updateMovesCount();
+    }
+
+    function updateMovesCount() {
+        movesCount++;
+        movesDisplay.textContent = `Moves Count: ${movesCount}`;
     }
 
     initializeBoard();
